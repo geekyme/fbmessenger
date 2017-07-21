@@ -336,10 +336,10 @@ type ButtonPayload struct {
 
 // Button represents a single button in a structured message using the button template.
 type Button struct {
-	Type    string `json:"type" binding:"required"`
-	Title   string `json:"title,omitempty"`
-	URL     string `json:"url,omitempty"`
-	Payload string `json:"payload,omitempty"`
+	Type          string         `json:"type" binding:"required"`
+	Title         string         `json:"title,omitempty"`
+	URL           string         `json:"url,omitempty"`
+	Payload       string         `json:"payload,omitempty"`
 	ShareContents *ShareContents `json:"share_contents,omitempty"`
 }
 
@@ -482,6 +482,7 @@ type MessagingEntry struct {
 	Message   *CallbackMessage `json:"message"`
 	Delivery  *Delivery        `json:"delivery"`
 	Postback  *Postback        `json:"postback"`
+	Referral  *Referral        `json:"referral"`
 	OptIn     *OptIn           `json:"optin"`
 }
 
@@ -547,7 +548,14 @@ Postback holds the data defined for buttons the user taps.
 See https://developers.facebook.com/docs/messenger-platform/webhook-reference/postback-received
 */
 type Postback struct {
-	Payload string `json:"payload" binding:"required"`
+	Payload  string    `json:"payload" binding:"required"`
+	Referral *Referral `json:"referral"`
+}
+
+type Referral struct {
+	Ref    string `json:"ref"`
+	Source string `json:"source"`
+	Type   string `json:"type"`
 }
 
 /*

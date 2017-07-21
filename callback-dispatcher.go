@@ -13,6 +13,7 @@ type CallbackDispatcher struct {
 	DeliveryHandler       MessageEntryHandler
 	PostbackHandler       MessageEntryHandler
 	AuthenticationHandler MessageEntryHandler
+	ReferralHandler       MessageEntryHandler
 }
 
 /*
@@ -37,6 +38,10 @@ func (dispatcher *CallbackDispatcher) Dispatch(cb *Callback) error {
 			} else if messagingEntry.OptIn != nil {
 				if dispatcher.AuthenticationHandler != nil {
 					dispatcher.AuthenticationHandler(messagingEntry)
+				}
+			} else if messagingEntry.Referral != nil {
+				if dispatcher.ReferralHandler != nil {
+					dispatcher.ReferralHandler(messagingEntry)
 				}
 			}
 		}
