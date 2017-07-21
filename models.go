@@ -291,6 +291,10 @@ type Message struct {
 	QuickReplies []*QuickReply `json:"quick_replies,omitempty"`
 }
 
+type ShareContents struct {
+	Attachment *Attachment `json:"attachment,omitempty"`
+}
+
 // Attachment is used to build a message with attached media, or a structured message.
 type Attachment struct {
 	Type    string      `json:"type" binding:"required"`
@@ -333,9 +337,10 @@ type ButtonPayload struct {
 // Button represents a single button in a structured message using the button template.
 type Button struct {
 	Type    string `json:"type" binding:"required"`
-	Title   string `json:"title" binding:"required"`
+	Title   string `json:"title,omitempty"`
 	URL     string `json:"url,omitempty"`
 	Payload string `json:"payload,omitempty"`
+	ShareContents *ShareContents `json:"share_contents,omitempty"`
 }
 
 /*
