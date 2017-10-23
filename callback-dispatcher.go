@@ -31,7 +31,7 @@ func MessageHandler(handler MessageEntryHandler) HandlerSetter {
 }
 
 // DeliveryHandler sets CallbackDispatcher's deliveryHandler to handler
-func d(handler MessageEntryHandler) HandlerSetter {
+func DeliveryHandler(handler MessageEntryHandler) HandlerSetter {
 	return func(dispatcher *CallbackDispatcher) {
 		dispatcher.deliveryHandler = handler
 	}
